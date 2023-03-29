@@ -184,8 +184,9 @@ const RevisionScreen = ({ navigation, route }) => {
       <Button
         title="Next"
         onPress={() => {
+          nextPosition = Math.floor(Math.random() * (allWords.length - 1));
           currentPosition = allWords.indexOf(currentWord);
-          setCurrentWord(allWords[(currentPosition + 1) % allWords.length]);
+          setCurrentWord(allWords[nextPosition]);
         }}
       />
     </SafeAreaView>
