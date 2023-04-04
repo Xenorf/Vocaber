@@ -15,7 +15,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DOMParser from "react-native-html-parser";
 
 function copyToClipboard(text) {
-  console.log("copying to clipboard");
+  console.log("Copying to clipboard");
   let result = text.replace(/,/g, "\n");
   Clipboard.setString(result);
 }
@@ -24,13 +24,67 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-async function storeWord(word) {
+async function storeWord(word, definition) {
   try {
-    await AsyncStorage.setItem(capitalizeFirstLetter(word.trim()), "");
+    await AsyncStorage.setItem(capitalizeFirstLetter(word.trim()), definition);
   } catch (error) {
     console.error("Error saving the word locally");
     console.error(error);
   }
+}
+
+async function requestDefinition(word) {
+  const storedDefinition = await AsyncStorage.getItem(word.trim());
+  if (storedDefinition !== null) {
+    console.log("Retrieving definition of " + word + " in AsyncStorage");
+    return storedDefinition;
+  } else {
+    return await fetchDefinition(word);
+  }
+}
+
+async function getAllData() {
+  try {
+    let allData = [];
+    const keys = await AsyncStorage.getAllKeys();
+    const result = await AsyncStorage.multiGet(keys);
+    for (let i = 0; i < result.length; i++) {
+      allData.push(result[i][0]);
+    }
+    return allData;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function fetchDefinition(word) {
+  console.log("Fetching definition for " + word);
+  let url =
+    "https://www.larousse.fr/dictionnaires/francais/" + word.toLowerCase();
+  const response = await fetch(url, { redirect: "follow" });
+  const html = await response.text();
+  var parsedDocument = new DOMParser.DOMParser().parseFromString(
+    html,
+    "text/html"
+  );
+  const definitionsDiv = parsedDocument.getElementById("definition");
+  if (definitionsDiv == null) {
+    console.warn("Definition not found in Larousse");
+    return "Definition not found";
+  }
+  let definitions = definitionsDiv.getElementsByClassName("DivisionDefinition");
+  let merged_definitions = "";
+  for (let i = 0; i < definitions.length; i++) {
+    merged_definitions +=
+      "\n\n" + definitions[i].textContent.replace(/[\t\r\n]/g, "");
+  }
+  let clean_definitions = merged_definitions
+    .replace(/Synonyme :.*/g, "")
+    .replace(/Synonymes :.*/g, "")
+    .replace(/Contraire :.*/g, "")
+    .replace(/Contraires :.*/g, "");
+  storeWord(word, clean_definitions);
+  return clean_definitions;
 }
 
 const Stack = createNativeStackNavigator();
@@ -75,8 +129,8 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeScreenNavigator} />
-        <Tab.Screen name="Revision" component={RevisionScreenNavigator} />
-        <Tab.Screen name="Export" component={ExportScreen} />
+        <Tab.Screen name="Learning" component={RevisionScreenNavigator} />
+        <Tab.Screen name="Export/Import" component={ExportScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -95,7 +149,7 @@ const HomeScreen = ({ navigation }) => {
       <Button
         title="Fetch definition"
         onPress={() => {
-          if (word) storeWord(word);
+          // if (word) storeWord(word);
           navigation.navigate("DefinitionTab", {
             word: capitalizeFirstLetter(word),
           });
@@ -111,37 +165,7 @@ const DefinitionScreen = ({ navigation, route }) => {
     getDefinitions(route.params.word);
   }, []);
   const getDefinitions = async (word) => {
-    console.log("GET DEFINITIONS");
-    let url =
-      "https://www.larousse.fr/dictionnaires/francais/" + word.toLowerCase();
-    console.log(url);
-    const response = await fetch(url, { redirect: "follow" });
-    const html = await response.text();
-    var parsedDocument = new DOMParser.DOMParser().parseFromString(
-      html,
-      "text/html"
-    );
-    const definitionsDiv = parsedDocument.getElementById("definition");
-    if (definitionsDiv == null) {
-      setDefinition("Definition not found");
-      console.log("Definition not found");
-      await AsyncStorage.removeItem(word);
-      return;
-    }
-    definitions = definitionsDiv.getElementsByClassName("DivisionDefinition");
-    let merged_definitions = "";
-    for (let i = 0; i < definitions.length; i++) {
-      merged_definitions +=
-        "\n\n" + definitions[i].textContent.replace(/[\t\r\n]/g, "");
-    }
-    let clean_definitions = merged_definitions
-      .replace(/Synonyme :.*/g, "")
-      .replace(/Synonymes :.*/g, "")
-      .replace(/Contraire :.*/g, "")
-      .replace(/Contraires :.*/g, "");
-    console.log(clean_definitions);
-    console.log("DEFINITIONS GET");
-    setDefinition(clean_definitions);
+    setDefinition(await requestDefinition(word));
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -158,19 +182,9 @@ const RevisionScreen = ({ navigation, route }) => {
     importData();
   }, []);
   const importData = async () => {
-    try {
-      let tmpWords = [];
-      const keys = await AsyncStorage.getAllKeys();
-      const result = await AsyncStorage.multiGet(keys);
-      for (let i = 0; i < result.length; i++) {
-        tmpWords.push(result[i][0]);
-      }
-      console.log(tmpWords);
-      setAllWords(tmpWords);
-      setCurrentWord(tmpWords[0]);
-    } catch (error) {
-      console.error(error);
-    }
+    let allData = await getAllData();
+    setAllWords(allData);
+    setCurrentWord(allData[0]);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -184,8 +198,17 @@ const RevisionScreen = ({ navigation, route }) => {
       <Button
         title="Next"
         onPress={() => {
-          nextPosition = Math.floor(Math.random() * (allWords.length - 1));
-          currentPosition = allWords.indexOf(currentWord);
+          let nextPosition = Math.floor(Math.random() * allWords.length);
+          setCurrentWord(allWords[nextPosition]);
+        }}
+      />
+      <Button
+        title="Remove"
+        onPress={async () => {
+          console.log("Removing " + word + " from AsyncStorage");
+          await AsyncStorage.removeItem(currentWord);
+          setAllWords(allWords);
+          let nextPosition = Math.floor(Math.random() * allWords.length);
           setCurrentWord(allWords[nextPosition]);
         }}
       />
@@ -200,26 +223,14 @@ const ExportScreen = () => {
     importData();
   }, []);
   const importData = async () => {
-    try {
-      let tmpWords = [];
-      const keys = await AsyncStorage.getAllKeys();
-      const result = await AsyncStorage.multiGet(keys);
-      console.log(result);
-      for (let i = 0; i < result.length; i++) {
-        tmpWords.push(result[i][0]);
-      }
-      console.log(tmpWords);
-      setAllWords(tmpWords);
-    } catch (error) {
-      console.error(error);
-    }
+    setAllWords(await getAllData());
   };
 
   const storeList = async () => {
     importArray = importList.split("\n").filter((str) => str !== "");
     for (let i = 0; i < importArray.length; i++) {
-      console.log(importArray[i]);
-      storeWord(importArray[i]);
+      fetchDefinition(importArray[i]);
+      // storeWord(importArray[i]);
     }
   };
   return (
@@ -228,6 +239,10 @@ const ExportScreen = () => {
         data={allWords}
         renderItem={({ item }) => <Text>{item}</Text>}
       />
+      <Button
+        title="Export"
+        onPress={() => copyToClipboard(allWords.toString())}
+      />
       <TextInput
         style={styles.input}
         onChangeText={onChangeImportList}
@@ -235,10 +250,6 @@ const ExportScreen = () => {
         value={importList}
       />
       <Button title="Import" onPress={() => storeList()} />
-      <Button
-        title="Export"
-        onPress={() => copyToClipboard(allWords.toString())}
-      />
     </SafeAreaView>
   );
 };
