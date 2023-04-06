@@ -184,7 +184,7 @@ const RevisionScreen = ({ navigation, route }) => {
   const importData = async () => {
     let allData = await getAllData();
     setAllWords(allData);
-    setCurrentWord(allData[0]);
+    setCurrentWord(allData[Math.floor(Math.random() * allData.length)]);
   };
   return (
     <SafeAreaView style={styles.container}>
