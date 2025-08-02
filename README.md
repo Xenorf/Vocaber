@@ -19,10 +19,7 @@ Vocaber is a fast, science-based vocabulary trainer. **No accounts, no ads, no t
 
 ## 🎬 Demo
 
-<p align="center">
-  <video src="docs/demo.mp4" controls width="360"></video>
-</p>
-
+![Demo of the feature](media/demo.gif)
 
 ## ✨ Features
 
