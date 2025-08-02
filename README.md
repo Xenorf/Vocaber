@@ -22,8 +22,7 @@ Vocaber is a fast, science-based vocabulary trainer. **No accounts, no ads, no t
 <p align="center">
   <video src="docs/demo.mp4" controls width="360"></video>
 </p>
-  
----
+
 
 ## ✨ Features
 
@@ -35,7 +34,6 @@ Vocaber is a fast, science-based vocabulary trainer. **No accounts, no ads, no t
 - 🌙 **Offline-first:** Works without internet for reviewing and managing your words.
 - 🧩 **Multi-language Support:** Currently supports **English** and **French**.
 
----
 
 ## 🖼️ Screenshots
 
@@ -51,8 +49,6 @@ Vocaber is a fast, science-based vocabulary trainer. **No accounts, no ads, no t
   <img src="docs/screenshots/en/forgot-flashcard.jpg" width="220"/>
 </p>
 
----
-
 ## 📥 Build from source
 
 If you want bleeding edge features, you can build Vocaber from source:
@@ -64,8 +60,6 @@ flutter pub get
 flutter run
 ```
 
----
-
 ## 🛠️ Tech Stack
 
 - **Flutter** (cross-platform mobile).
@@ -73,15 +67,11 @@ flutter run
 - **image_picker, cached_network_image, fl_chart** (media & charts).
 - **Intl** (Multiple language support).
 
----
-
 ## 🌍 Language Support
 
 Vocaber is designed to be extensible for multiple languages.
 Currently, **English** and **French** are supported.
 If you'd like to help add support for your language, see the [Contributing](#-contributing) section!
-
----
 
 ## 🤝 Contributing
 
