@@ -1,57 +1,46 @@
 # Vocaber
 
-<p align="center">
+<p align="left">
   <img src="assets/icon/app_icon.png" alt="Vocaber App Icon" width="200"/>
 </p>
 
 *Stop guessing. Start learning, one word at a time.*
 
-## 🚀 Overview
-
-Vocaber is a fast, science-based vocabulary trainer. **No accounts, no ads, no tracking.**
-
 <a href="https://play.google.com/store/apps/details?id=fr.xenorf.vocaber">
-  <img src="docs/google-play.svg" alt="Get it on Google Play" style="height: 60px;" />
+  <img src="docs/google-play.svg" alt="Get it on Google Play" style="height: 60px; display: block; margin-bottom: 10px;" />
 </a>
 <a href="https://apps.apple.com/app/id1234567890">
-  <img src="docs/app-store-unavailable.svg" alt="App Store Unavailable" style="height: 60px;" />
+  <img src="docs/app-store-unavailable.svg" alt="App Store Unavailable" style="height: 60px; display: block;" />
 </a>
 
-## 🎬 Demo
-
-![Demo of the feature](media/demo.gif)
 
 ## ✨ Features
 
-- 🔍 **Instant Definitions:** Search for words and get definitions in multiple languages.
-- ⏰ **Spaced Repetition:** Review your words at optimal intervals, making your learning more efficient.
-- 📊 **Progress Tracking:** See your streak, XP, and review stats.
-- 🖼️ **Custom Profile:** Personalize your username and avatar.
-- 📤 **Export/Import:** Backup or transfer your vocabulary with one tap.
-- 🌙 **Offline-first:** Works without internet for reviewing and managing your words.
-- 🧩 **Multi-language Support:** Currently supports **English** and **French**.
-
-
-## 🖼️ Screenshots
-
-<p align="center">
-  <img src="docs/screenshots/en/search-screen.jpg" width="220"/>
-  <img src="docs/screenshots/en/definition-screen.jpg" width="220"/>
-  <img src="docs/screenshots/en/profile-screen.jpg" width="220"/>
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/en/flashcard-screen.jpg" width="220"/>
-  <img src="docs/screenshots/en/known-flashcard.jpg" width="220"/>
-  <img src="docs/screenshots/en/forgot-flashcard.jpg" width="220"/>
-</p>
+<table>
+  <tr>
+    <td style="vertical-align: top; padding-right: 15px;">
+      <img src="docs/demo.gif" width="220" />
+    </td>
+    <td style="vertical-align: top;">
+      <ul>
+        <li>🔍 <strong>Instant Definitions:</strong> Search for words and get definitions in multiple languages.</li>
+        <li>⏰ <strong>Spaced Repetition:</strong> Review your words at optimal intervals, making your learning more efficient.</li>
+        <li>📊 <strong>Progress Tracking:</strong> See your streak, XP, and review stats.</li>
+        <li>🖼️ <strong>Custom Profile:</strong> Personalize your username and avatar.</li>
+        <li>📤 <strong>Export/Import:</strong> Backup or transfer your vocabulary with one tap.</li>
+        <li>🌙 <strong>Offline-first:</strong> Works without internet for reviewing and managing your words.</li>
+        <li>🧩 <strong>Multi-language Support:</strong> Currently supports <strong>English</strong> and <strong>French</strong>.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ## 📥 Build from source
 
 If you want bleeding edge features, you can build Vocaber from source:
 
 ```sh
-git clone https://github.com/yourusername/vocaber.git
+git clone https://github.com/Xenorf/vocaber.git
 cd vocaber
 flutter pub get
 flutter run
@@ -68,7 +57,7 @@ flutter run
 
 Vocaber is designed to be extensible for multiple languages.
 Currently, **English** and **French** are supported.
-If you'd like to help add support for your language, see the [Contributing](#-contributing) section!
+If you'd like to help add support for your language, see the below!
 
 ## 🤝 Contributing
 
@@ -85,7 +74,9 @@ Contributions are welcome! I am by no means a UI/UX expert nor a professional mo
 2. Add a case in `fromTerm` method of the **Word** class.
 3. Submit your PR!
 
----
+**Everything else**
+1. Figure it out, don't hesitate to make an issue.
+2. Submit a PR!
 
 ## 📄 License
 
