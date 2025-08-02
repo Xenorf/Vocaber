@@ -1,25 +1,28 @@
-<p align="center">
-  <img src="assets/icon/app_icon.png" alt="Vocaber App Icon" width="120"/>
-</p>
-
 # Vocaber
+
+<p align="center">
+  <img src="assets/icon/app_icon.png" alt="Vocaber App Icon" width="200"/>
+</p>
 
 *Stop guessing. Start learning, one word at a time.*
 
----
-
 ## 🚀 Overview
 
-Vocaber is a fast, science-based vocabulary trainer.
-- **No accounts, no ads, no tracking.**
+Vocaber is a fast, science-based vocabulary trainer. **No accounts, no ads, no tracking.**
+
+<a href="https://play.google.com/store/apps/details?id=fr.xenorf.vocaber">
+  <img src="docs/google-play.svg" alt="Get it on Google Play" style="height: 60px;" />
+</a>
+<a href="https://apps.apple.com/app/id1234567890">
+  <img src="docs/app-store-unavailable.svg" alt="App Store Unavailable" style="height: 60px;" />
+</a>
+
+## 🎬 Demo
 
 <p align="center">
-  <a href="https://play.google.com/store/apps/details?id=your.package.name">
-    <img src="docs/google-play.png" alt="Get it on Google Play" height="80"/>
-  </a>
-  <img src="docs/apple-store-unavailable.svg" alt="App Store Unavailable" height="80"/>
+  <video src="docs/demo.mp4" controls width="360"></video>
 </p>
-
+  
 ---
 
 ## ✨ Features
@@ -36,13 +39,16 @@ Vocaber is a fast, science-based vocabulary trainer.
 
 ## 🖼️ Screenshots
 
-  <img src="docs/screenshots/en/search-screen.jpg" alt="Search Screen" width="220"/>
-  <img src="docs/screenshots/en/definition-screen.jpg" alt="Definition Screen" width="220"/>
-  <img src="docs/screenshots/en/list-screen.jpg" alt="Word List Screen" width="220"/>
-  <img src="docs/screenshots/en/flashcard-screen.jpg" alt="Flashcard Review" width="220"/>
-  <img src="docs/screenshots/en/known-flashcard.jpg" alt="Known Flashcard" width="220"/>
-  <img src="docs/screenshots/en/forgot-flashcard.jpg" alt="Forgot Flashcard" width="220"/>
-  <img src="docs/screenshots/en/profile-screen.jpg" alt="Profile Screen" width="220"/>
+<p align="center">
+  <img src="docs/screenshots/en/search-screen.jpg" width="220"/>
+  <img src="docs/screenshots/en/definition-screen.jpg" width="220"/>
+  <img src="docs/screenshots/en/profile-screen.jpg" width="220"/>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/en/flashcard-screen.jpg" width="220"/>
+  <img src="docs/screenshots/en/known-flashcard.jpg" width="220"/>
+  <img src="docs/screenshots/en/forgot-flashcard.jpg" width="220"/>
 </p>
 
 ---
@@ -62,10 +68,10 @@ flutter run
 
 ## 🛠️ Tech Stack
 
-- **Flutter** (cross-platform mobile)
-- **Hive** (local database)
-- **image_picker, cached_network_image, fl_chart** (media & charts)
-- **Intl** (Multiple language support)
+- **Flutter** (cross-platform mobile).
+- **Hive** (local database).
+- **image_picker, cached_network_image, fl_chart** (media & charts).
+- **Intl** (Multiple language support).
 
 ---
 
