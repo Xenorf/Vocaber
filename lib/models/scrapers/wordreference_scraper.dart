@@ -1,0 +1,49 @@
+import 'package:flutter/foundation.dart';
+import 'package:html/parser.dart' as parser;
+import 'package:http/http.dart' as http;
+
+import 'scraper.dart';
+
+class WordReferenceScraper extends Scraper {
+  WordReferenceScraper(super.word);
+
+  @override
+  Future<List<String>> getDefinitions() async {
+    final url =
+        'https://www.wordreference.com/definition/${word.toLowerCase()}';
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode != 200) {
+      debugPrint('Failed to load page: ${response.statusCode}');
+      return [];
+    }
+
+    final document = parser.parse(response.body);
+
+    // Select all <li> elements with id starting with 'advanced_'
+    final definitionElements = document.querySelectorAll('li').where((element) {
+      final id = element.id;
+      return id.startsWith('advanced_');
+    }).toList();
+
+    final definitions = <String>[];
+
+    for (final element in definitionElements) {
+      final cleanText = element.text
+          .replaceAll(RegExp(r'[\n\r\t]'), ' ')
+          .replaceAll(RegExp(r'\s+'), ' ')
+          .trim();
+
+      if (cleanText.isNotEmpty) {
+        definitions.add(cleanText);
+      }
+    }
+    final numberedDefinitions = definitions
+        .asMap()
+        .entries
+        .map((entry) => '${entry.key + 1}. ${entry.value}')
+        .toList();
+
+    return numberedDefinitions;
+  }
+}
