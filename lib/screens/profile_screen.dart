@@ -153,7 +153,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         CircleAvatar(
                           radius: 24,
-                          backgroundColor: Colors.grey[300],
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.surface,
                           backgroundImage: imageFile != null
                               ? FileImage(imageFile!)
                               : (imageUrl != null && imageUrl!.isNotEmpty
@@ -165,7 +167,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     : null),
                           child:
                               (imageFile == null && (imageUrl?.isEmpty ?? true))
-                              ? const Icon(Icons.person, color: Colors.white)
+                              ? Icon(
+                                  Icons.person,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                )
                               : null,
                         ),
                         const SizedBox(width: 12),
@@ -375,8 +382,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: LinearProgressIndicator(
                     value: progress,
                     minHeight: 8,
-                    backgroundColor: Colors.grey[300],
-                    color: Colors.deepPurple,
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -448,8 +455,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         borderData: FlBorderData(show: false),
                         lineTouchData: LineTouchData(
                           touchTooltipData: LineTouchTooltipData(
-                            getTooltipColor: (touchedSpot) =>
-                                Colors.deepPurple.shade700,
+                            getTooltipColor: (touchedSpot) => Theme.of(
+                              context,
+                            ).colorScheme.primary.withOpacity(0.85),
                             getTooltipItems: (spots) => spots
                                 .map((s) {
                                   final spotIndex = s.spotIndex;
@@ -464,7 +472,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       : 'Invalid date';
                                   return LineTooltipItem(
                                     '${stat.count} swipes\n$label',
-                                    const TextStyle(color: Colors.white),
+                                    TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                    ),
                                   );
                                 })
                                 .whereType<LineTooltipItem>()
@@ -475,7 +487,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           LineChartBarData(
                             spots: spots,
                             isCurved: true,
-                            color: Colors.deepPurple,
+                            color: Theme.of(context).colorScheme.primary,
                             barWidth: 2,
                             dotData: FlDotData(show: true),
                             belowBarData: BarAreaData(show: false),
@@ -503,7 +515,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: const Center(child: CircularProgressIndicator()),
+      );
     }
 
     final aMonthAgo = DateTime.now().subtract(const Duration(days: 30));
@@ -515,6 +530,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final showGraph = filteredStats.length >= 2;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: _buildProfileContent(
         showGraph: showGraph,
         filteredStats: filteredStats,

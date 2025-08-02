@@ -112,7 +112,7 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -122,13 +122,15 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
                 alignment: Alignment.topRight,
                 child: TextButton.icon(
                   onPressed: _selectLanguage,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.language,
-                    color: Colors.lightBlueAccent,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   label: Text(
                     _language.toUpperCase(),
-                    style: const TextStyle(color: Colors.black),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
@@ -138,7 +140,7 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    backgroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).colorScheme.surface,
                   ),
                 ),
               ),
@@ -158,7 +160,9 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
               ElevatedButton(
                 onPressed: _isLoading ? null : _getDefinition,
                 child: _isLoading
-                    ? const CircularProgressIndicator(color: Colors.white)
+                    ? CircularProgressIndicator(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      )
                     : Text(AppLocalizations.of(context)!.getDefinition),
               ),
 

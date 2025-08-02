@@ -57,13 +57,14 @@ class _WordListScreenState extends State<WordListScreen> {
     return filtered;
   }
 
-  Color _reviewColor(int count) {
-    if (count <= 0) return Colors.redAccent;
-    if (count == 1) return Colors.orangeAccent;
-    if (count == 2) return Colors.yellow[700]!;
-    if (count == 3) return Colors.lightGreen;
-    if (count == 4) return Colors.green;
-    return Colors.blueAccent;
+  Color _reviewColor(BuildContext context, int count) {
+    final colorScheme = Theme.of(context).colorScheme;
+    if (count <= 0) return colorScheme.error;
+    if (count == 1) return colorScheme.secondary;
+    if (count == 2) return colorScheme.primary.withOpacity(0.7);
+    if (count == 3) return colorScheme.primary.withOpacity(0.85);
+    if (count == 4) return colorScheme.primary;
+    return colorScheme.primary.withOpacity(0.5);
   }
 
   Widget _buildEmptyState() => Center(
@@ -72,7 +73,10 @@ class _WordListScreenState extends State<WordListScreen> {
         context,
       )!.noWordsYet(AppConfig().supportedLanguages[_language] ?? _language),
       textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+      style: TextStyle(
+        fontSize: 18,
+        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+      ),
     ),
   );
 
@@ -93,8 +97,8 @@ class _WordListScreenState extends State<WordListScreen> {
       background: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         alignment: Alignment.centerRight,
-        color: Colors.redAccent,
-        child: const Icon(Icons.delete, color: Colors.white),
+        color: Theme.of(context).colorScheme.error,
+        child: Icon(Icons.delete, color: Theme.of(context).colorScheme.onError),
       ),
       onDismissed: (_) {
         box.delete(key);
@@ -115,7 +119,7 @@ class _WordListScreenState extends State<WordListScreen> {
           subtitle: Text(AppLocalizations.of(context)!.addedOn(formattedDate)),
           trailing: Container(
             decoration: BoxDecoration(
-              color: _reviewColor(word.reviewCount),
+              color: _reviewColor(context, word.reviewCount),
               borderRadius: BorderRadius.circular(20),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -123,8 +127,8 @@ class _WordListScreenState extends State<WordListScreen> {
               word.reviewCount > 5
                   ? AppLocalizations.of(context)!.learned
                   : AppLocalizations.of(context)!.reviews(word.reviewCount),
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -144,6 +148,7 @@ class _WordListScreenState extends State<WordListScreen> {
     final entries = _sortedEntries(wordBox);
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.myWords),
         actions: [

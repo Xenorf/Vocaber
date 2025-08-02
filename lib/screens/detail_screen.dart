@@ -40,6 +40,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
@@ -53,19 +54,19 @@ class DetailScreen extends StatelessWidget {
               const SizedBox(height: 50),
               Text(
                 word.term,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               const SizedBox(height: 24),
               Text(
                 AppLocalizations.of(context)!.definitions,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
               const SizedBox(height: 12),
@@ -75,50 +76,70 @@ class DetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: Text(
                     definition,
-                    style: const TextStyle(fontSize: 18, color: Colors.black87),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 );
               }),
               const SizedBox(height: 32),
               Row(
                 children: [
-                  const Icon(Icons.repeat, size: 20, color: Colors.grey),
+                  Icon(
+                    Icons.repeat,
+                    size: 20,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     AppLocalizations.of(
                       context,
                     )!.reviewedTimes(word.reviewCount),
-                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
               Row(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.calendar_today,
                     size: 20,
-                    color: Colors.grey,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   const SizedBox(width: 8),
                   Text(
                     AppLocalizations.of(
                       context,
                     )!.added(formatDate(context, word.createdAt)),
-                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(Icons.update, size: 20, color: Colors.grey),
+                  Icon(
+                    Icons.update,
+                    size: 20,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     AppLocalizations.of(
                       context,
                     )!.lastReviewed(formatDate(context, word.lastReviewed)),
-                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
                   ),
                 ],
               ),

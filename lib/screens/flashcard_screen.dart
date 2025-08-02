@@ -104,6 +104,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
   Widget build(BuildContext context) {
     if (_words.isEmpty) {
       return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
@@ -117,6 +118,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
       );
     }
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Column(
           children: [
@@ -153,14 +155,14 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                             borderRadius: BorderRadius.circular(24),
                           ),
                           margin: const EdgeInsets.all(16),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           child: Center(
                             child: Text(
                               word.term,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.deepPurple,
+                                color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
                           ),
@@ -184,7 +186,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                       width: 4,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
-                                    color: Colors.green.withValues(alpha: 0.15),
+                                    color: Colors.green.withOpacity(0.15),
                                   ),
                                   child: Text(
                                     AppLocalizations.of(context)!.gotIt,
@@ -218,9 +220,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                       width: 4,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
-                                    color: Colors.redAccent.withValues(
-                                      alpha: 0.15,
-                                    ),
+                                    color: Colors.redAccent.withOpacity(0.15),
                                   ),
                                   child: Text(
                                     AppLocalizations.of(context)!.forgot,
@@ -262,22 +262,31 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                       }
                       _controller.undo();
                     },
-                    backgroundColor: Colors.grey[300],
-                    child: const Icon(Icons.rotate_left, color: Colors.black87),
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                    child: Icon(
+                      Icons.rotate_left,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                   FloatingActionButton(
                     heroTag: 'left',
                     onPressed: () =>
                         _controller.swipe(CardSwiperDirection.left),
                     backgroundColor: Colors.redAccent,
-                    child: const Icon(Icons.keyboard_arrow_left),
+                    child: const Icon(
+                      Icons.keyboard_arrow_left,
+                      color: Colors.white,
+                    ),
                   ),
                   FloatingActionButton(
                     heroTag: 'right',
                     onPressed: () =>
                         _controller.swipe(CardSwiperDirection.right),
                     backgroundColor: Colors.green,
-                    child: const Icon(Icons.keyboard_arrow_right),
+                    child: const Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),

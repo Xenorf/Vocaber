@@ -48,14 +48,38 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(brightness: Brightness.light, useMaterial3: true),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        useMaterial3: true,
+        colorScheme: ColorScheme.light(
+          primary: Color(0xFF0288D1), // Accent Blue
+          onPrimary: Colors.white,
+          secondary: Color(0xFF26C6DA), // Accent Teal
+          onSecondary: Colors.white,
+          surface: Colors.white, // All surfaces white
+          onSurface: Colors.black,
+          error: Color(0xFFD32F2F), // Red 700
+          onError: Colors.white,
+        ),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Color(0xFF0288D1), // Accent Blue
+          elevation: 0,
+        ),
+        cardColor: Colors.white,
+        // cardColor: Color(0xFFFAFCFE),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFF0288D1), // Accent Blue
+          foregroundColor: Colors.white,
+        ),
+      ),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      // supportedLocales: const [Locale('fr')],
       supportedLocales: const [Locale('en'), Locale('fr')],
       home: const Launcher(),
     );
