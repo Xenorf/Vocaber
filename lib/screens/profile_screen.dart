@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:vocaber/models/bottommsg.dart';
+import 'package:vocaber/models/bottom_message.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
@@ -119,7 +119,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: nameController,
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context)!.username,
-                        border: const OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -129,7 +131,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         labelText: AppLocalizations.of(
                           context,
                         )!.preferredLanguage,
-                        border: const OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                       ),
                       items: AppConfig().supportedLanguages.entries
                           .map(
@@ -184,7 +188,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     labelText: AppLocalizations.of(
                                       context,
                                     )!.imageUrl,
-                                    border: const OutlineInputBorder(),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
                                   ),
                                   onChanged: (value) {
                                     setModalState(() {
@@ -224,6 +230,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: ElevatedButton.icon(
                         icon: const Icon(Icons.save),
                         label: Text(AppLocalizations.of(context)!.save),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
                         onPressed: () {
                           final name = nameController.text.trim().isEmpty
                               ? AppLocalizations.of(context)!.defaultUser

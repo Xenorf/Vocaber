@@ -197,4 +197,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get errorWhileImporting =>
       'Une erreur est survenue lors de l\'importation des mots. Veuillez réessayer plus tard.';
+
+  @override
+  String get next => 'Suivant';
 }

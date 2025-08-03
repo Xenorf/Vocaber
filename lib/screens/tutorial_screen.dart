@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:vocaber/models/bottommsg.dart';
+import 'package:vocaber/models/bottom_message.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vocaber/generated/l10n.dart';
 import 'package:vocaber/models/appconfig.dart';
@@ -241,7 +241,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   },
                   child: Text(
                     _currentPage < _steps.length - 1
-                        ? AppLocalizations.of(context)!.gotIt
+                        ? AppLocalizations.of(context)!.next
                         : "Finish",
                   ),
                 ),
@@ -302,13 +302,16 @@ class _TutorialScreenState extends State<TutorialScreen> {
                           controller: _nameController,
                           decoration: InputDecoration(
                             labelText: AppLocalizations.of(context)!.username,
-                            border: const OutlineInputBorder(),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
                             errorText:
                                 _showUsernameError &&
                                     _nameController.text.trim().isEmpty
                                 ? ''
                                 : null,
                             errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
                               borderSide: BorderSide(
                                 color: Colors.red,
                                 width: 2,
@@ -336,7 +339,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
                             labelText: AppLocalizations.of(
                               context,
                             )!.preferredLanguage,
-                            border: const OutlineInputBorder(),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
                           ),
                           items: AppConfig().supportedLanguages.entries
                               .map(
@@ -394,6 +399,11 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                     label: Text(
                                       AppLocalizations.of(context)!.uploadImage,
                                     ),
+                                    style: OutlinedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                    ),
                                     onPressed: () async {
                                       final picker = ImagePicker();
                                       final picked = await picker.pickImage(
@@ -415,6 +425,11 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                       AppLocalizations.of(
                                         context,
                                       )!.useImageLink,
+                                    ),
+                                    style: OutlinedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
                                     ),
                                     onPressed: () async {
                                       final url = await showDialog<String>(
@@ -443,8 +458,12 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                                           AppLocalizations.of(
                                                             context,
                                                           )!.imageUrl,
-                                                      border:
-                                                          const OutlineInputBorder(),
+                                                      border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              16,
+                                                            ),
+                                                      ),
                                                     ),
                                                     onSubmitted: (value) =>
                                                         Navigator.pop(
@@ -452,23 +471,11 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                                           value.trim(),
                                                         ),
                                                   ),
-                                                  const SizedBox(height: 12),
+                                                  const SizedBox(height: 16),
                                                   Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.end,
                                                     children: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                              context,
-                                                            ),
-                                                        child: Text(
-                                                          AppLocalizations.of(
-                                                            context,
-                                                          )!.cancel,
-                                                        ),
-                                                      ),
-                                                      const SizedBox(width: 8),
                                                       ElevatedButton(
                                                         onPressed: () =>
                                                             Navigator.pop(
@@ -476,7 +483,19 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                                               controller.text
                                                                   .trim(),
                                                             ),
-                                                        child: Text("OK"),
+                                                        style: ElevatedButton.styleFrom(
+                                                          shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                  16,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        child: Text(
+                                                          MaterialLocalizations.of(
+                                                            context,
+                                                          ).okButtonLabel,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -488,9 +507,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                       );
                                       if (url != null && url.isNotEmpty) {
                                         setState(() {
-                                          _linkController.text = url;
-                                          _useImageLink = true;
+                                          _avatarUrl = url;
                                           _imageFile = null;
+                                          _useImageLink = true;
                                         });
                                       }
                                     },

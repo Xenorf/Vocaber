@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 
-import 'scraper.dart';
+import 'definition_provider.dart';
 
-class WordReferenceScraper extends Scraper {
-  WordReferenceScraper(super.word);
+class WordReferenceDefinitionProvider extends DefinitionProvider {
+  WordReferenceDefinitionProvider(super.word);
 
   @override
   Future<List<String>> getDefinitions() async {

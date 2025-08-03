@@ -70,7 +70,7 @@ Contributions are welcome! I am by no means a UI/UX expert nor a professional mo
 4. Submit your PR!
 
 **How to add a vocabulary language:**
-1. Create a scraper from your favorite dictionary in `models/scrapers` that extends the **Scraper** class.
+1. Create a definition provider from your favorite dictionary in `models/definition_providers` that extends the **DefinitionProvider** class.
 2. Add a case in `fromTerm` method of the **Word** class.
 3. Submit your PR!
 

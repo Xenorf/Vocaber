@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
 import 'package:vocaber/models/appconfig.dart';
-import 'scrapers/larousse_scraper.dart';
-import 'scrapers/wordreference_scraper.dart';
-import 'scrapers/scraper.dart';
+import 'scrapers/larousse_definition_provider.dart';
+import 'scrapers/wordreference_definition_provider.dart';
+import 'scrapers/definition_provider.dart';
 
 part 'word.g.dart';
 
@@ -60,17 +60,17 @@ class Word {
     final language = AppConfig().prefs.getString('language') ?? 'en';
     term = capitalize(term);
 
-    Scraper scraper;
+    DefinitionProvider definitionProvider;
     switch (language) {
       case "fr":
-        scraper = LarousseScraper(term);
+        definitionProvider = LarousseDefinitionProvider(term);
         break;
       default:
-        scraper = WordReferenceScraper(term);
+        definitionProvider = WordReferenceDefinitionProvider(term);
         break;
     }
 
-    final definitions = await scraper.getDefinitions();
+    final definitions = await definitionProvider.getDefinitions();
     final now = DateTime.now();
 
     return Word(

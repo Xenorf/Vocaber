@@ -52,5 +52,6 @@
   "tutorialLocal": "Toutes vos données sont stockées localement. Vous pouvez exporter ou importer vos mots à tout moment.",
   "tutorialProfileSetup": "Configurez votre profil pour personnaliser votre expérience.",
   "tutorialLocalTitle": "Local & Privé",
-  "errorWhileImporting": "Une erreur est survenue lors de l'importation des mots. Veuillez réessayer plus tard."
+  "errorWhileImporting": "Une erreur est survenue lors de l'importation des mots. Veuillez réessayer plus tard.",
+  "next": "Suivant"
 }

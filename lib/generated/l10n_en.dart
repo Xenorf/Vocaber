@@ -197,4 +197,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get errorWhileImporting =>
       'Something went wrong while importing. Please try again later.';
+
+  @override
+  String get next => 'Next';
 }

@@ -52,5 +52,6 @@
   "tutorialLocal": "All your data is stored locally to ensure privacy. You can export or import your words anytime.",
   "tutorialProfileSetup": "Set up your profile to personalize your experience.",
   "tutorialLocalTitle": "Local & Private",
-  "errorWhileImporting": "Something went wrong while importing. Please try again later."
+  "errorWhileImporting": "Something went wrong while importing. Please try again later.",
+  "next": "Next"
 }

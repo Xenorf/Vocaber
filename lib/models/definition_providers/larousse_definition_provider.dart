@@ -1,10 +1,10 @@
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 
-import 'scraper.dart';
+import 'definition_provider.dart';
 
-class LarousseScraper extends Scraper {
-  LarousseScraper(super.word);
+class LarousseDefinitionProvider extends DefinitionProvider {
+  LarousseDefinitionProvider(super.word);
 
   @override
   Future<List<String>> getDefinitions() async {
