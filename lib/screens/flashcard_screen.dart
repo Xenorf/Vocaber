@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vocaber/models/bottommsg.dart';
+import 'package:vocaber/models/bottom_message.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';

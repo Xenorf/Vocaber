@@ -89,8 +89,6 @@ class _WordListScreenState extends State<WordListScreen> {
       locale,
     ).format(word.createdAt);
 
-    // final formattedDate = DateFormat('dd MMM yyyy').format(word.createdAt);
-
     return Dismissible(
       key: Key(key.toString()),
       direction: DismissDirection.endToStart,

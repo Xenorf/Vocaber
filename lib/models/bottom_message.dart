@@ -50,7 +50,6 @@ class AppBottomSheet {
 
               const SizedBox(height: 12),
 
-              // Message
               Text(
                 message,
                 style: theme.textTheme.bodyMedium,

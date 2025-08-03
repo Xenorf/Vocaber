@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
 import 'package:vocaber/models/appconfig.dart';
-import 'scrapers/larousse_definition_provider.dart';
-import 'scrapers/wordreference_definition_provider.dart';
-import 'scrapers/definition_provider.dart';
+import 'definition_providers/larousse_definition_provider.dart';
+import 'definition_providers/wordreference_definition_provider.dart';
+import 'definition_providers/definition_provider.dart';
 
 part 'word.g.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vocaber/models/bottommsg.dart';
+import 'package:vocaber/models/bottom_message.dart';
 import 'package:hive/hive.dart';
 import 'package:vocaber/models/appconfig.dart';
 
@@ -30,7 +30,7 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
     final selected = await showModalBottomSheet<String>(
       context: context,
       constraints: BoxConstraints(
-        maxHeight: supportedLanguages.length * 60.0 + 20, // just enough height
+        maxHeight: supportedLanguages.length * 60.0 + 20,
       ),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),

@@ -52,25 +52,24 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         useMaterial3: true,
         colorScheme: ColorScheme.light(
-          primary: Color(0xFF0288D1), // Accent Blue
+          primary: Color(0xFF0288D1),
           onPrimary: Colors.white,
-          secondary: Color(0xFF26C6DA), // Accent Teal
+          secondary: Color(0xFF26C6DA),
           onSecondary: Colors.white,
-          surface: Colors.white, // All surfaces white
+          surface: Colors.white,
           onSurface: Colors.black,
-          error: Color(0xFFD32F2F), // Red 700
+          error: Color(0xFFD32F2F),
           onError: Colors.white,
         ),
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
-          foregroundColor: Color(0xFF0288D1), // Accent Blue
+          foregroundColor: Color(0xFF0288D1),
           elevation: 0,
         ),
         cardColor: Colors.white,
-        // cardColor: Color(0xFFFAFCFE),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color(0xFF0288D1), // Accent Blue
+          backgroundColor: Color(0xFF0288D1),
           foregroundColor: Colors.white,
         ),
       ),

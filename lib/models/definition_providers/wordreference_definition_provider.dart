@@ -20,7 +20,6 @@ class WordReferenceDefinitionProvider extends DefinitionProvider {
 
     final document = parser.parse(response.body);
 
-    // Select all <li> elements with id starting with 'advanced_'
     final definitionElements = document.querySelectorAll('li').where((element) {
       final id = element.id;
       return id.startsWith('advanced_');

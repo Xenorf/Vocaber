@@ -510,6 +510,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                           _avatarUrl = url;
                                           _imageFile = null;
                                           _useImageLink = true;
+                                          _linkController.text = url;
                                         });
                                       }
                                     },
