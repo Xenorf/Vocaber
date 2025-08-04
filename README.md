@@ -40,8 +40,8 @@
 If you want bleeding edge features, you can build Vocaber from source:
 
 ```sh
-git clone https://github.com/Xenorf/vocaber.git
-cd vocaber
+git clone https://github.com/Xenorf/Vocaber.git
+cd Vocaber
 flutter pub get
 flutter run
 ```
