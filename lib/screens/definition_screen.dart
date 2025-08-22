@@ -124,7 +124,7 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
                   onPressed: _selectLanguage,
                   icon: Icon(
                     Icons.language,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                   label: Text(
                     _language.toUpperCase(),
@@ -147,7 +147,7 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
               const Spacer(),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 36.0),
                 child: TextField(
                   controller: _controller,
                   decoration: InputDecoration(
@@ -158,10 +158,14 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
               const SizedBox(height: 20),
 
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                ),
                 onPressed: _isLoading ? null : _getDefinition,
                 child: _isLoading
                     ? CircularProgressIndicator(
-                        color: Theme.of(context).colorScheme.onPrimary,
+                        color: Theme.of(context).colorScheme.onSecondary,
                       )
                     : Text(AppLocalizations.of(context)!.getDefinition),
               ),

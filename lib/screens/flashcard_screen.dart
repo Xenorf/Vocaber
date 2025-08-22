@@ -147,95 +147,106 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                         builder: (_) => DetailScreen(word: word),
                       ),
                     ),
-                    child: Stack(
-                      children: [
-                        Card(
-                          elevation: 6,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                          margin: const EdgeInsets.all(16),
-                          color: Theme.of(context).cardColor,
-                          child: Center(
-                            child: Text(
-                              word.term,
-                              style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
+                    child: Center(
+                      child: AspectRatio(
+                        aspectRatio: 5 / 8,
+                        child: Stack(
+                          children: [
+                            Card(
+                              elevation: 6,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                              margin: const EdgeInsets.all(16),
+                              color: Theme.of(context).cardColor,
+                              child: Center(
+                                child: Text(
+                                  word.term,
+                                  style: TextStyle(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.secondary,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            if (swipe > 0)
+                              Positioned(
+                                top: 60,
+                                left: 40,
+                                child: Opacity(
+                                  opacity: (swipe * 2).clamp(0.0, 1.0),
+                                  child: Transform.rotate(
+                                    angle: -0.3,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.green,
+                                          width: 4,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: Colors.green.withValues(
+                                          alpha: 0.15,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        AppLocalizations.of(context)!.gotIt,
+                                        style: const TextStyle(
+                                          color: Colors.green,
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 2,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            if (swipe < 0)
+                              Positioned(
+                                top: 60,
+                                right: 40,
+                                child: Opacity(
+                                  opacity: (-swipe * 2).clamp(0.0, 1.0),
+                                  child: Transform.rotate(
+                                    angle: 0.3,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.redAccent,
+                                          width: 4,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: Colors.redAccent.withValues(
+                                          alpha: 0.15,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        AppLocalizations.of(context)!.forgot,
+                                        style: const TextStyle(
+                                          color: Colors.redAccent,
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 2,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
-                        if (swipe > 0)
-                          Positioned(
-                            top: 60,
-                            left: 40,
-                            child: Opacity(
-                              opacity: (swipe * 2).clamp(0.0, 1.0),
-                              child: Transform.rotate(
-                                angle: -0.3,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.green,
-                                      width: 4,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Colors.green.withOpacity(0.15),
-                                  ),
-                                  child: Text(
-                                    AppLocalizations.of(context)!.gotIt,
-                                    style: const TextStyle(
-                                      color: Colors.green,
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 2,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        if (swipe < 0)
-                          Positioned(
-                            top: 60,
-                            right: 40,
-                            child: Opacity(
-                              opacity: (-swipe * 2).clamp(0.0, 1.0),
-                              child: Transform.rotate(
-                                angle: 0.3,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.redAccent,
-                                      width: 4,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Colors.redAccent.withOpacity(0.15),
-                                  ),
-                                  child: Text(
-                                    AppLocalizations.of(context)!.forgot,
-                                    style: const TextStyle(
-                                      color: Colors.redAccent,
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 2,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                      ],
+                      ),
                     ),
                   );
                 },

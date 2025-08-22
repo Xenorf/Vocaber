@@ -231,6 +231,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: const Icon(Icons.save),
                         label: Text(AppLocalizations.of(context)!.save),
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.secondary,
+                          foregroundColor: Theme.of(
+                            context,
+                          ).colorScheme.onSecondary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
@@ -394,7 +400,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     value: progress,
                     minHeight: 8,
                     backgroundColor: Theme.of(context).colorScheme.surface,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),
@@ -412,6 +418,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           Center(
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                foregroundColor: Theme.of(context).colorScheme.onSecondary,
+              ),
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const WordListScreen()),
@@ -425,11 +435,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                ),
                 onPressed: _exportWords,
                 child: Text(AppLocalizations.of(context)!.export),
               ),
               const SizedBox(width: 16),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                ),
                 onPressed: _importWords,
                 child: Text(AppLocalizations.of(context)!.import),
               ),
@@ -468,7 +486,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           touchTooltipData: LineTouchTooltipData(
                             getTooltipColor: (touchedSpot) => Theme.of(
                               context,
-                            ).colorScheme.primary.withOpacity(0.85),
+                            ).colorScheme.primary.withValues(alpha: 0.85),
                             getTooltipItems: (spots) => spots
                                 .map((s) {
                                   final spotIndex = s.spotIndex;
@@ -498,7 +516,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           LineChartBarData(
                             spots: spots,
                             isCurved: true,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.secondary,
                             barWidth: 2,
                             dotData: FlDotData(show: true),
                             belowBarData: BarAreaData(show: false),
@@ -587,6 +605,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(AppLocalizations.of(context)!.cancel),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                ),
                 onPressed: () => Navigator.pop(context, true),
                 child: Text(AppLocalizations.of(context)!.import),
               ),

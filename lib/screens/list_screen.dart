@@ -61,10 +61,10 @@ class _WordListScreenState extends State<WordListScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     if (count <= 0) return colorScheme.error;
     if (count == 1) return colorScheme.secondary;
-    if (count == 2) return colorScheme.primary.withOpacity(0.7);
-    if (count == 3) return colorScheme.primary.withOpacity(0.85);
-    if (count == 4) return colorScheme.primary;
-    return colorScheme.primary.withOpacity(0.5);
+    if (count == 2) return colorScheme.secondary.withValues(alpha: 0.7);
+    if (count == 3) return colorScheme.secondary.withValues(alpha: 0.85);
+    if (count == 4) return colorScheme.secondary;
+    return colorScheme.secondary.withValues(alpha: 0.5);
   }
 
   Widget _buildEmptyState() => Center(
@@ -75,7 +75,7 @@ class _WordListScreenState extends State<WordListScreen> {
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 18,
-        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
       ),
     ),
   );
@@ -126,7 +126,7 @@ class _WordListScreenState extends State<WordListScreen> {
                   ? AppLocalizations.of(context)!.learned
                   : AppLocalizations.of(context)!.reviews(word.reviewCount),
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.onSecondary,
                 fontWeight: FontWeight.w600,
               ),
             ),

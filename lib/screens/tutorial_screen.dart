@@ -150,12 +150,12 @@ class _TutorialScreenState extends State<TutorialScreen> {
                             children: [
                               CircleAvatar(
                                 radius: 40,
-                                backgroundColor: theme.colorScheme.primary
+                                backgroundColor: theme.colorScheme.secondary
                                     .withValues(alpha: 0.1),
                                 child: Icon(
                                   step.icon,
                                   size: 48,
-                                  color: theme.colorScheme.primary,
+                                  color: theme.colorScheme.secondary,
                                 ),
                               ),
                               const SizedBox(height: 24),
@@ -163,7 +163,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                 _getTitle(context, step.titleKey),
                                 style: theme.textTheme.headlineSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
-                                  color: theme.colorScheme.primary,
+                                  color: theme.colorScheme.secondary,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -197,8 +197,8 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: _currentPage == index
-                          ? theme.colorScheme.primary
-                          : theme.colorScheme.primary.withValues(alpha: 0.3),
+                          ? theme.colorScheme.secondary
+                          : theme.colorScheme.secondary.withValues(alpha: 0.3),
                     ),
                   );
                 }),
@@ -275,11 +275,11 @@ class _TutorialScreenState extends State<TutorialScreen> {
                           radius: 40,
                           backgroundColor: Theme.of(
                             context,
-                          ).colorScheme.primary.withValues(alpha: 0.1),
+                          ).colorScheme.secondary.withValues(alpha: 0.1),
                           child: Icon(
                             Icons.person_add,
                             size: 48,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -287,7 +287,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                           AppLocalizations.of(context)!.createProfile,
                           style: theme.textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: theme.colorScheme.primary,
+                            color: theme.colorScheme.secondary,
                           ),
                           textAlign: TextAlign.center,
                         ),

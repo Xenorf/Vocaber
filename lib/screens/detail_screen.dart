@@ -62,7 +62,7 @@ class DetailScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -94,7 +94,7 @@ class DetailScreen extends StatelessWidget {
                           Icon(
                             Icons.repeat,
                             size: 20,
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                           const SizedBox(width: 8),
                           Text(
@@ -103,7 +103,7 @@ class DetailScreen extends StatelessWidget {
                             )!.reviewedTimes(word.reviewCount),
                             style: TextStyle(
                               fontSize: 14,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                         ],
@@ -114,7 +114,7 @@ class DetailScreen extends StatelessWidget {
                           Icon(
                             Icons.calendar_today,
                             size: 20,
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                           const SizedBox(width: 8),
                           Text(
@@ -123,7 +123,7 @@ class DetailScreen extends StatelessWidget {
                             )!.added(formatDate(context, word.createdAt)),
                             style: TextStyle(
                               fontSize: 14,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                         ],
@@ -134,7 +134,7 @@ class DetailScreen extends StatelessWidget {
                           Icon(
                             Icons.update,
                             size: 20,
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                           const SizedBox(width: 8),
                           Text(
@@ -143,7 +143,7 @@ class DetailScreen extends StatelessWidget {
                             ),
                             style: TextStyle(
                               fontSize: 14,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                         ],

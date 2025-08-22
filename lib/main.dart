@@ -52,9 +52,10 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         useMaterial3: true,
         colorScheme: ColorScheme.light(
-          primary: Color(0xFF0288D1),
+          // primary: Color(0xFF0288D1),
+          primary: Color(0xFF26C6DA),
           onPrimary: Colors.white,
-          secondary: Color(0xFF26C6DA),
+          secondary: Color(0xFF0288D1),
           onSecondary: Colors.white,
           surface: Colors.white,
           onSurface: Colors.black,
