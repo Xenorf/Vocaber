@@ -28,8 +28,17 @@ class WordReferenceDefinitionProvider extends DefinitionProvider {
     final definitions = <String>[];
 
     for (final element in definitionElements) {
-      final cleanText = element.text
+      var cleanText = element.text
           .replaceAll(RegExp(r'[\n\r\t]'), ' ')
+          // Add space before opening bracket or parenthesis if not already present
+          .replaceAllMapped(RegExp(r'(?<! )([\(\[])'), (m) => ' ${m[1]}')
+          // Add space after closing bracket or parenthesis if not already present
+          .replaceAllMapped(RegExp(r'([\)\]])(?! )'), (m) => '${m[1]} ')
+          // Remove space before colon or semicolon
+          .replaceAllMapped(RegExp(r' (\:|;)'), (m) => m[1]!)
+          // Add space after colon or semicolon if not already present
+          .replaceAllMapped(RegExp(r'([:;])(?! )'), (m) => '${m[1]} ')
+          // Shrink multiple spaces to one
           .replaceAll(RegExp(r'\s+'), ' ')
           .trim();
 

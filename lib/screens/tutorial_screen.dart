@@ -212,6 +212,10 @@ class _TutorialScreenState extends State<TutorialScreen> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                  ),
                   onPressed: () {
                     if (_currentPage < _steps.length - 1) {
                       _nextPage();
@@ -242,7 +246,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   child: Text(
                     _currentPage < _steps.length - 1
                         ? AppLocalizations.of(context)!.next
-                        : "Finish",
+                        : AppLocalizations.of(context)!.finish,
                   ),
                 ),
               ),
@@ -302,14 +306,23 @@ class _TutorialScreenState extends State<TutorialScreen> {
                           controller: _nameController,
                           decoration: InputDecoration(
                             labelText: AppLocalizations.of(context)!.username,
-                            border: OutlineInputBorder(
+                            labelStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary,
+                              fontSize: 16,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            errorText:
-                                _showUsernameError &&
-                                    _nameController.text.trim().isEmpty
-                                ? ''
-                                : null,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
                               borderSide: BorderSide(
@@ -317,7 +330,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                 width: 2,
                               ),
                             ),
+                            errorText:
+                                _showUsernameError &&
+                                    _nameController.text.trim().isEmpty
+                                ? ''
+                                : null,
                           ),
+                          cursorColor: Theme.of(context).colorScheme.secondary,
+                          style: const TextStyle(fontSize: 16),
                           onChanged: (_) {
                             setState(() {
                               if (_showUsernameError) {
@@ -339,15 +359,40 @@ class _TutorialScreenState extends State<TutorialScreen> {
                             labelText: AppLocalizations.of(
                               context,
                             )!.preferredLanguage,
-                            border: OutlineInputBorder(
+                            labelStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary,
+                              fontSize: 16,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
                               borderRadius: BorderRadius.circular(16),
                             ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                          dropdownColor: Theme.of(context).colorScheme.surface,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
                           ),
                           items: AppConfig().supportedLanguages.entries
                               .map(
                                 (entry) => DropdownMenuItem(
                                   value: entry.key,
-                                  child: Text(entry.value),
+                                  child: Text(
+                                    entry.value,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
                                 ),
                               )
                               .toList(),
@@ -403,6 +448,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(16),
                                       ),
+                                      side: BorderSide(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.secondary,
+                                      ),
+                                      foregroundColor: Theme.of(
+                                        context,
+                                      ).colorScheme.secondary,
                                     ),
                                     onPressed: () async {
                                       final picker = ImagePicker();
@@ -430,6 +483,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(16),
                                       ),
+                                      side: BorderSide(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.secondary,
+                                      ),
+                                      foregroundColor: Theme.of(
+                                        context,
+                                      ).colorScheme.secondary,
                                     ),
                                     onPressed: () async {
                                       final url = await showDialog<String>(
@@ -458,13 +519,40 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                                           AppLocalizations.of(
                                                             context,
                                                           )!.imageUrl,
-                                                      border: OutlineInputBorder(
+                                                      labelStyle: TextStyle(
+                                                        color: Theme.of(
+                                                          context,
+                                                        ).colorScheme.secondary,
+                                                      ),
+                                                      enabledBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .colorScheme
+                                                                  .secondary,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              16,
+                                                            ),
+                                                      ),
+                                                      focusedBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .colorScheme
+                                                                  .secondary,
+                                                          width: 2,
+                                                        ),
                                                         borderRadius:
                                                             BorderRadius.circular(
                                                               16,
                                                             ),
                                                       ),
                                                     ),
+                                                    cursorColor: Theme.of(
+                                                      context,
+                                                    ).colorScheme.secondary,
                                                     onSubmitted: (value) =>
                                                         Navigator.pop(
                                                           context,
@@ -484,6 +572,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                                                   .trim(),
                                                             ),
                                                         style: ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Theme.of(context)
+                                                                  .colorScheme
+                                                                  .secondary,
+                                                          foregroundColor:
+                                                              Theme.of(context)
+                                                                  .colorScheme
+                                                                  .onSecondary,
                                                           shape: RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius.circular(

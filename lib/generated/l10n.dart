@@ -239,7 +239,7 @@ abstract class AppLocalizations {
   /// No description provided for @noWordsToImport.
   ///
   /// In en, this message translates to:
-  /// **'No words to import'**
+  /// **'No words imported'**
   String get noWordsToImport;
 
   /// No description provided for @confirmImportTitle.
@@ -325,6 +325,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @finish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get finish;
 
   /// No description provided for @levelXp.
   ///

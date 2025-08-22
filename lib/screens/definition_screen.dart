@@ -150,8 +150,25 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 36.0),
                 child: TextField(
                   controller: _controller,
+                  cursorColor: Theme.of(context).colorScheme.secondary,
                   decoration: InputDecoration(
                     labelText: AppLocalizations.of(context)!.enterWord,
+                    labelStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.secondary,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ),
               ),

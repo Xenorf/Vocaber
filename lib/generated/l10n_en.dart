@@ -92,7 +92,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get clipboardEmpty => 'Clipboard is empty';
 
   @override
-  String get noWordsToImport => 'No words to import';
+  String get noWordsToImport => 'No words imported';
 
   @override
   String get confirmImportTitle => 'Confirm Import';
@@ -141,6 +141,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get finish => 'Finish';
 
   @override
   String levelXp(Object level, Object xpInCurrentLevel, Object xpPerLevel) {

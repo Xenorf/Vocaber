@@ -117,9 +117,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 20),
                     TextField(
                       controller: nameController,
+                      cursorColor: Theme.of(context).colorScheme.secondary,
+                      style: const TextStyle(fontSize: 16),
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context)!.username,
-                        border: OutlineInputBorder(
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 16,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary,
+                            width: 2,
+                          ),
                           borderRadius: BorderRadius.circular(16),
                         ),
                       ),
@@ -131,21 +147,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         labelText: AppLocalizations.of(
                           context,
                         )!.preferredLanguage,
-                        border: OutlineInputBorder(
+                        labelStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 16,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary,
+                            width: 2,
+                          ),
                           borderRadius: BorderRadius.circular(16),
                         ),
                       ),
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
                       items: AppConfig().supportedLanguages.entries
                           .map(
                             (entry) => DropdownMenuItem(
                               value: entry.key,
-                              child: Text(entry.value),
+                              child: Text(
+                                entry.value,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                ),
+                              ),
                             ),
                           )
                           .toList(),
                       onChanged: (value) {
                         if (value != null) {
-                          setModalState(() {
+                          setState(() {
                             selectedLanguage = value;
                           });
                         }
@@ -184,11 +221,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: useLink
                               ? TextField(
                                   controller: linkController,
+                                  cursorColor: Theme.of(
+                                    context,
+                                  ).colorScheme.secondary,
                                   decoration: InputDecoration(
                                     labelText: AppLocalizations.of(
                                       context,
                                     )!.imageUrl,
-                                    border: OutlineInputBorder(
+                                    labelStyle: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.secondary,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.secondary,
+                                      ),
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.secondary,
+                                        width: 2,
+                                      ),
                                       borderRadius: BorderRadius.circular(16),
                                     ),
                                   ),
@@ -201,9 +260,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 )
                               : OutlinedButton.icon(
                                   onPressed: pickImage,
-                                  icon: const Icon(Icons.folder_open),
+                                  icon: Icon(
+                                    Icons.folder_open,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.secondary,
+                                  ),
                                   label: Text(
                                     AppLocalizations.of(context)!.uploadImage,
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.secondary,
+                                    ),
+                                  ),
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.secondary,
+                                    ),
                                   ),
                                 ),
                         ),
@@ -211,7 +287,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         IconButton(
                           icon: Icon(
                             useLink ? Icons.upload : Icons.link,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                           tooltip: useLink
                               ? AppLocalizations.of(context)!.uploadImage
@@ -601,6 +677,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             actions: [
               TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: Theme.of(context).colorScheme.secondary,
+                ),
                 onPressed: () => Navigator.pop(context, false),
                 child: Text(AppLocalizations.of(context)!.cancel),
               ),
@@ -671,13 +750,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return;
     }
 
-    final shouldImport = await _showImportConfirmDialog(terms.length);
-    if (!shouldImport) return;
-
     final box = Hive.box<Word>('words');
+    // Only keep words that are not already in the box
     final toImport = terms
         .where((term) => !box.containsKey(term.toLowerCase()))
         .toList();
+
+    // Check how many words are actually new before confirming
     if (toImport.isEmpty && mounted) {
       AppBottomSheet.show(
         context,
@@ -687,6 +766,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return;
     }
 
+    final shouldImport = await _showImportConfirmDialog(toImport.length);
+    if (!shouldImport) return;
+
     final progress = ValueNotifier<int>(0);
 
     _showImportProgressDialog(toImport.length, progress);
@@ -695,6 +777,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     for (final term in toImport) {
       try {
         final word = await Word.fromTerm(term);
+        // Skip words with empty definitions
+        if (word.definitions.isEmpty) {
+          continue;
+        }
         await box.put(term.toLowerCase(), word);
         imported++;
         progress.value = imported;
@@ -707,6 +793,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
         }
       }
+    }
+
+    // If no valid words were imported, cancel and inform the user
+    if (imported == 0 && mounted) {
+      Navigator.of(context, rootNavigator: true).pop();
+      AppBottomSheet.show(
+        context,
+        message: AppLocalizations.of(context)!.noWordsToImport,
+        type: BottomSheetType.info,
+      );
+      return;
     }
 
     if (mounted) {

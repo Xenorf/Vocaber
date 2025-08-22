@@ -92,7 +92,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get clipboardEmpty => 'Le presse-papiers est vide';
 
   @override
-  String get noWordsToImport => 'Aucun mot à importer';
+  String get noWordsToImport => 'Aucun mot n\'a été importé';
 
   @override
   String get confirmImportTitle => 'Confirmer l\'importation';
@@ -141,6 +141,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cancel => 'Annuler';
+
+  @override
+  String get finish => 'C\'est parti !';
 
   @override
   String levelXp(Object level, Object xpInCurrentLevel, Object xpPerLevel) {

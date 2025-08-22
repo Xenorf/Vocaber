@@ -13,11 +13,13 @@ class AppBottomSheet {
     final theme = Theme.of(context);
     final bool isError = type == BottomSheetType.error;
 
-    final color = isError ? theme.colorScheme.error : theme.colorScheme.primary;
+    final color = isError
+        ? theme.colorScheme.error
+        : theme.colorScheme.secondary;
 
     final onColor = isError
         ? theme.colorScheme.onError
-        : theme.colorScheme.onPrimary;
+        : theme.colorScheme.onSecondary;
 
     final usedIcon =
         icon ?? (isError ? Icons.error_outline : Icons.check_circle_outline);
