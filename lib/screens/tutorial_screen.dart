@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:vocaber/constants/default_words.dart';
 import 'package:vocaber/models/bottom_message.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vocaber/generated/l10n.dart';
@@ -235,6 +236,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                                 : _linkController.text.trim());
 
                       Profile.save(name, image, _selectedLanguage);
+                      importDefaultWords(_selectedLanguage);
                       setState(() {
                         _profileSaved = true;
                         _showUsernameError = false;
