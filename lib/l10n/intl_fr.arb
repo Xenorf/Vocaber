@@ -3,6 +3,7 @@
   "getDefinition": "Obtenir la définition",
   "enterWord": "Entrez un mot",
   "noDefinitionsFound": "Aucune définition trouvée pour \"{word}\".",
+  "noInternetConnection": "Pas de connexion internet. Connectez-vous et réessayez.",
   "reviewedTimes": "Révisé : {count} fois",
   "added": "Ajouté : {date}",
   "lastReviewed": "Dernière révision : {date}",

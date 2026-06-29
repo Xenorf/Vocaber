@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 
@@ -11,7 +14,16 @@ class LarousseDefinitionProvider extends DefinitionProvider {
     final url =
         'https://www.larousse.fr/dictionnaires/francais/${word.toLowerCase()}';
 
-    final response = await http.get(Uri.parse(url));
+    final http.Response response;
+    try {
+      response = await http
+          .get(Uri.parse(url))
+          .timeout(const Duration(seconds: 5));
+    } on TimeoutException {
+      throw const NetworkException();
+    } on SocketException {
+      throw const NetworkException();
+    }
 
     if (response.statusCode != 200) {
       return [];

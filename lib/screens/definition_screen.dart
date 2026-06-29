@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:vocaber/models/appconfig.dart';
 
 import '../generated/l10n.dart';
+import '../models/definition_providers/definition_provider.dart';
 import '../models/word.dart';
 import 'detail_screen.dart';
 
@@ -83,7 +84,15 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
     }
 
     if (word == null) {
-      word = await Word.fromTerm(input);
+      try {
+        word = await Word.fromTerm(input);
+      } on NetworkException {
+        if (mounted) {
+          _showSnackbar(AppLocalizations.of(context)!.noInternetConnection);
+        }
+        setState(() => _isLoading = false);
+        return;
+      }
 
       if (word.definitions.isEmpty) {
         if (mounted) {

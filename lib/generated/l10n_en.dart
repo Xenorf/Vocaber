@@ -23,6 +23,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get noInternetConnection =>
+      'No internet connection. Connect and try again.';
+
+  @override
   String reviewedTimes(Object count) {
     return 'Reviewed: $count time(s)';
   }

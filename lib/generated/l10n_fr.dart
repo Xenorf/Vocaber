@@ -23,6 +23,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get noInternetConnection =>
+      'Pas de connexion internet. Connectez-vous et réessayez.';
+
+  @override
   String reviewedTimes(Object count) {
     return 'Révisé : $count fois';
   }
