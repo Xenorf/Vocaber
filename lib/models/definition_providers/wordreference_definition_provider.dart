@@ -16,7 +16,12 @@ class WordReferenceDefinitionProvider extends DefinitionProvider {
     final http.Response response;
     try {
       response = await http
-          .get(Uri.parse(url))
+          .get(Uri.parse(url), headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                'AppleWebKit/537.36 (KHTML, like Gecko) '
+                'Chrome/120.0.0.0 Safari/537.36',
+            'Cookie': 'nginx_wr_human=1',
+          })
           .timeout(const Duration(seconds: 5));
     } on TimeoutException {
       throw const NetworkException();
