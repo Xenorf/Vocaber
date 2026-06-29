@@ -3,6 +3,7 @@
   "getDefinition": "Get Definition",
   "enterWord": "Enter a word",
   "noDefinitionsFound": "No definitions found for \"{word}\".",
+  "noInternetConnection": "No internet connection. Connect and try again.",
   "reviewedTimes": "Reviewed: {count} time(s)",
   "added": "Added: {date}",
   "lastReviewed": "Last reviewed: {date}",

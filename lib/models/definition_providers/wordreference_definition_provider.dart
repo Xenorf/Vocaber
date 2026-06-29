@@ -1,4 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+import 'dart:io';
+
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 
@@ -11,7 +13,16 @@ class WordReferenceDefinitionProvider extends DefinitionProvider {
   Future<List<String>> getDefinitions() async {
     final url =
         'https://www.wordreference.com/definition/${word.toLowerCase()}';
-    final response = await http.get(Uri.parse(url));
+    final http.Response response;
+    try {
+      response = await http
+          .get(Uri.parse(url))
+          .timeout(const Duration(seconds: 5));
+    } on TimeoutException {
+      throw const NetworkException();
+    } on SocketException {
+      throw const NetworkException();
+    }
 
     if (response.statusCode != 200) {
       debugPrint('Failed to load page: ${response.statusCode}');

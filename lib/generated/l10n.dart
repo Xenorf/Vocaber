@@ -122,6 +122,12 @@ abstract class AppLocalizations {
   /// **'No definitions found for \"{word}\".'**
   String noDefinitionsFound(Object word);
 
+  /// No description provided for @noInternetConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Connect and try again.'**
+  String get noInternetConnection;
+
   /// No description provided for @reviewedTimes.
   ///
   /// In en, this message translates to:

@@ -3,3 +3,7 @@ abstract class DefinitionProvider {
   DefinitionProvider(this.word);
   Future<List<String>> getDefinitions();
 }
+
+class NetworkException implements Exception {
+  const NetworkException();
+}
