@@ -54,5 +54,12 @@
   "tutorialProfileSetup": "Set up your profile to personalize your experience.",
   "tutorialLocalTitle": "Local & Private",
   "errorWhileImporting": "Something went wrong while importing. Please try again later.",
+
+  "definitionErrorHttp": "Definition not found.",
+  "definitionErrorNetwork": "Definitions unavailable due to network error.",
+  "definitionErrorTimeout": "Definition request timed out.",
+  "definitionErrorParsing": "Definition not found.",
+  "definitionErrorUnknown": "Definitions unavailable({message}).",
+
   "next": "Next"
 }

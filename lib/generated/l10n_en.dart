@@ -202,5 +202,23 @@ class AppLocalizationsEn extends AppLocalizations {
       'Something went wrong while importing. Please try again later.';
 
   @override
+  String get definitionErrorHttp => 'Definition not found.';
+
+  @override
+  String get definitionErrorNetwork =>
+      'Definitions unavailable due to network error.';
+
+  @override
+  String get definitionErrorTimeout => 'Definition request timed out.';
+
+  @override
+  String get definitionErrorParsing => 'Definition not found.';
+
+  @override
+  String definitionErrorUnknown(Object message) {
+    return 'Definitions unavailable($message).';
+  }
+
+  @override
   String get next => 'Next';
 }

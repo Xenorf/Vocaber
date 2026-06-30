@@ -54,5 +54,12 @@
   "tutorialProfileSetup": "Configurez votre profil pour personnaliser votre expérience.",
   "tutorialLocalTitle": "Local & Privé",
   "errorWhileImporting": "Une erreur est survenue lors de l'importation des mots. Veuillez réessayer plus tard.",
+
+  "definitionErrorHttp": "Définitions introuvables.",
+  "definitionErrorNetwork": "Définitions indisponibles en raison d'une erreur réseau.",
+  "definitionErrorTimeout": "Définitions introuvables.",
+  "definitionErrorParsing": "Erreur lors de l'analyse des définitions depuis le service distant.",
+  "definitionErrorUnknown": "Définitions indisponibles ({message}).",
+
   "next": "Suivant"
 }

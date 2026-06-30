@@ -202,5 +202,24 @@ class AppLocalizationsFr extends AppLocalizations {
       'Une erreur est survenue lors de l\'importation des mots. Veuillez réessayer plus tard.';
 
   @override
+  String get definitionErrorHttp => 'Définitions introuvables.';
+
+  @override
+  String get definitionErrorNetwork =>
+      'Définitions indisponibles en raison d\'une erreur réseau.';
+
+  @override
+  String get definitionErrorTimeout => 'Définitions introuvables.';
+
+  @override
+  String get definitionErrorParsing =>
+      'Erreur lors de l\'analyse des définitions depuis le service distant.';
+
+  @override
+  String definitionErrorUnknown(Object message) {
+    return 'Définitions indisponibles ($message).';
+  }
+
+  @override
   String get next => 'Suivant';
 }

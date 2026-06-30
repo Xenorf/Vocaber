@@ -428,6 +428,36 @@ abstract class AppLocalizations {
   /// **'Something went wrong while importing. Please try again later.'**
   String get errorWhileImporting;
 
+  /// No description provided for @definitionErrorHttp.
+  ///
+  /// In en, this message translates to:
+  /// **'Definition not found.'**
+  String get definitionErrorHttp;
+
+  /// No description provided for @definitionErrorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Definitions unavailable due to network error.'**
+  String get definitionErrorNetwork;
+
+  /// No description provided for @definitionErrorTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Definition request timed out.'**
+  String get definitionErrorTimeout;
+
+  /// No description provided for @definitionErrorParsing.
+  ///
+  /// In en, this message translates to:
+  /// **'Definition not found.'**
+  String get definitionErrorParsing;
+
+  /// No description provided for @definitionErrorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Definitions unavailable({message}).'**
+  String definitionErrorUnknown(Object message);
+
   /// No description provided for @next.
   ///
   /// In en, this message translates to:

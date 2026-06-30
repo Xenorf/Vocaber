@@ -5,6 +5,7 @@ import 'package:vocaber/models/appconfig.dart';
 
 import '../generated/l10n.dart';
 import '../models/word.dart';
+import '../models/definition_providers/definition_provider.dart';
 import 'detail_screen.dart';
 
 class DefinitionScreen extends StatefulWidget {
@@ -84,6 +85,43 @@ class _DefinitionScreenState extends State<DefinitionScreen> {
 
     if (word == null) {
       word = await Word.fromTerm(input);
+
+      // Detect provider-sent sentinel errors and show localized messages as a bottom sheet
+      if (word.definitions.isNotEmpty &&
+          word.definitions.first.startsWith(definitionErrorPrefix)) {
+        final parts = word.definitions.first.split('|');
+        final type = parts.length > 1 ? parts[1] : 'UNKNOWN';
+        final data = parts.length > 2 ? parts[2] : '';
+
+        String msg;
+        switch (type) {
+          case 'HTTP':
+            msg = AppLocalizations.of(context)!.definitionErrorHttp;
+            break;
+          case 'TIMEOUT':
+            msg = AppLocalizations.of(context)!.definitionErrorTimeout;
+            break;
+          case 'NETWORK':
+            msg = AppLocalizations.of(context)!.definitionErrorNetwork;
+            break;
+          case 'PARSING':
+            msg = AppLocalizations.of(context)!.definitionErrorParsing;
+            break;
+          default:
+            msg = AppLocalizations.of(context)!.definitionErrorUnknown(data);
+        }
+
+        if (mounted) {
+          AppBottomSheet.show(
+            context,
+            message: msg,
+            type: BottomSheetType.error,
+          );
+        }
+
+        setState(() => _isLoading = false);
+        return;
+      }
 
       if (word.definitions.isEmpty) {
         if (mounted) {
