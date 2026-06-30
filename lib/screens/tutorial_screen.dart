@@ -356,7 +356,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                         ),
                         const SizedBox(height: 16),
                         DropdownButtonFormField<String>(
-                          value: _selectedLanguage,
+                          initialValue: _selectedLanguage,
                           decoration: InputDecoration(
                             labelText: AppLocalizations.of(
                               context,
