@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:implicitly_animated_list/implicitly_animated_list.dart';
 import 'package:intl/intl.dart';
 import 'package:vocaber/generated/l10n.dart';

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:path/path.dart' as p;
 import 'package:vocaber/generated/l10n.dart';
 import 'package:vocaber/models/appconfig.dart';

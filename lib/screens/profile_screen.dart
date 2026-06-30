@@ -6,7 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:vocaber/models/bottom_message.dart';
 import 'package:flutter/services.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vocaber/generated/l10n.dart';
 import 'package:vocaber/models/appconfig.dart';

@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 
 part 'dailystat.g.dart';
 
@@ -11,6 +11,7 @@ class DailyStat extends HiveObject {
   int count;
 
   DailyStat({required this.date, required this.count});
+
   static int calculateStreak() {
     final box = Hive.box<DailyStat>('dailyStats');
     final stats = box.values.toList();
@@ -19,29 +20,29 @@ class DailyStat extends HiveObject {
       ..sort((a, b) => b.compareTo(a));
 
     int streak = 0;
-    DateTime today = DateTime.now();
+    final today = DateTime.now();
 
-    bool hasToday = dates.any(
+    final hasToday = dates.any(
       (d) =>
           d.year == today.year && d.month == today.month && d.day == today.day,
     );
 
-    int j = 0;
-    if (!hasToday) {
-      j++;
-    }
+    int offset = hasToday ? 0 : 1;
 
     for (int i = 0; i < dates.length; i++) {
-      final date = dates[i];
-      final expected = today.subtract(Duration(days: streak + j));
-      if (date.year == expected.year &&
-          date.month == expected.month &&
-          date.day == expected.day) {
+      final expected = today.subtract(Duration(days: streak + offset));
+
+      final d = dates[i];
+
+      if (d.year == expected.year &&
+          d.month == expected.month &&
+          d.day == expected.day) {
         streak++;
       } else {
         break;
       }
     }
+
     return streak;
   }
 }

@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:vocaber/models/word.dart';
 
 void importDefaultWords(String language) {

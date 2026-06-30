@@ -8,7 +8,7 @@ part of 'word.dart';
 
 class WordAdapter extends TypeAdapter<Word> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   Word read(BinaryReader reader) {
@@ -20,7 +20,7 @@ class WordAdapter extends TypeAdapter<Word> {
       term: fields[0] as String,
       definitions: (fields[1] as List).cast<String>(),
       language: fields[5] as String,
-      reviewCount: fields[2] as int,
+      reviewCount: fields[2] == null ? 0 : (fields[2] as num).toInt(),
       createdAt: fields[3] as DateTime?,
       lastReviewed: fields[4] as DateTime?,
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vocaber/models/bottom_message.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:vocaber/models/appconfig.dart';
 
 import '../generated/l10n.dart';

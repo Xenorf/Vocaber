@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:vocaber/models/appconfig.dart';
 import 'definition_providers/larousse_definition_provider.dart';
 import 'definition_providers/wordreference_definition_provider.dart';
@@ -12,7 +12,7 @@ String capitalize(String s) {
 }
 
 @HiveType(typeId: 0)
-class Word {
+class Word extends HiveObject {
   @HiveField(0)
   final String term;
 
@@ -58,9 +58,11 @@ class Word {
 
   static Future<Word> fromTerm(String term) async {
     final language = AppConfig().prefs.getString('language') ?? 'en';
+
     term = capitalize(term);
 
     DefinitionProvider definitionProvider;
+
     switch (language) {
       case "fr":
         definitionProvider = LarousseDefinitionProvider(term);

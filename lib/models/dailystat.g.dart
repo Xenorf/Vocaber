@@ -8,7 +8,7 @@ part of 'dailystat.dart';
 
 class DailyStatAdapter extends TypeAdapter<DailyStat> {
   @override
-  final int typeId = 1;
+  final typeId = 1;
 
   @override
   DailyStat read(BinaryReader reader) {
@@ -18,7 +18,7 @@ class DailyStatAdapter extends TypeAdapter<DailyStat> {
     };
     return DailyStat(
       date: fields[0] as String,
-      count: fields[1] as int,
+      count: (fields[1] as num).toInt(),
     );
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vocaber/models/bottom_message.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:vocaber/generated/l10n.dart';
 import 'package:vocaber/models/appconfig.dart';
